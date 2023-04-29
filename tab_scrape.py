@@ -64,3 +64,5 @@ class tab_scrape(ttk.Frame):
 
         self.label_link['foreground'] = "#00796b"
         self.label_keywords['foreground'] = "#f9a825"
+
+        
