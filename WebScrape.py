@@ -11,6 +11,7 @@ except:
 #===================handle_functions====================#
 try:
     from tab_scrape import *
+    from tab_info import *
 except: 
     print("Cannot import required tab_scrape!")
     debug__(getframeinfo(currentframe()))
@@ -46,8 +47,10 @@ class WebScrape(Tk):
 
         # call tab GUI
         tabs_control = ttk.Notebook(self)
-        threaded(tabs_control.add(tab_scrape(tabs_control),text="Scrape",padding=5))
-        tab_scrape(tabs_control)
+        threaded(tabs_control.add(tab_scrape(tabs_control),text="scraping",padding=5))
+        threaded(tabs_control.add(tab_info(tabs_control),text="info",padding=5))
+        # tab_scrape(tabs_control)
+        # tab_info(tabs_control)
         tabs_control.pack(expand=1,fill="both",padx=3,pady=3)
 
 
