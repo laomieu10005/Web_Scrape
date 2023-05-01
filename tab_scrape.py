@@ -77,6 +77,8 @@ class tab_scrape(ttk.Frame):
 
 
     def scrape(self):
+
+        self.btn_scrape["state"] = "disabled"
         try:
             link = str(self.entry_link.get()).strip()
             keywords = str(self.entry_keywords.get()).strip()
@@ -87,16 +89,23 @@ class tab_scrape(ttk.Frame):
             self.username = str(self.entry_username.get())
             self.password = str(self.entry_password.get())
 
-
         if ((link!='') and (keywords !='')):
             if (";" in keywords):
                 keywords = keywords.split(";")
             self.label_link['foreground'] = "#000000"
             self.label_keywords['foreground'] = "#000000"
 
+            if self.check_vars:
+                find_contents(link,keywords,self.username,self.password)
+            else:
+                find_contents(link,keywords)
+
+
 
         self.label_link['foreground'] = "#00796b"
         self.label_keywords['foreground'] = "#f9a825"
 
-        self.txt_result.insert(1.0,link+"\n"+keywords+"\n","end")
-        self.txt_result.insert('end',self.username+"\n"+self.password+"\n","end")
+        # self.txt_result.insert(1.0,link+"\n"+keywords+"\n","end")
+        # self.txt_result.insert('end',self.username+"\n"+self.password+"\n","end")
+
+        self.btn_scrape["state"] = "enabled"

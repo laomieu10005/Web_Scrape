@@ -1,5 +1,5 @@
 import os
-import sys
+import sys,time
 import subprocess
 from threading import Thread
 
@@ -42,11 +42,19 @@ def init_vars():
 
     pass
 
-def find_contents(link):
+def find_contents(link,keysw,user=None,password=None):
     driver = webdriver.Edge()
-    driver.get('https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/')
-    content = driver.find_element(by="id",value="page-heading")
-    print(content.text)
+    driver.get(link)
+    time.sleep(1) # stay on the page within 2 sec
+    if user!=None and password!=None:
+        print("aaa")
+        #  driver.find_element("id", "id_username").send_keys(user)
+        #  driver.find_element("id", "id_password").send_keys(password+Keys.RETURN)
+    # content = driver.find_element(by="id",value=keysw)
+    print(driver.page_source)
+    time.sleep(2) # stay on the page within 2 sec
+    return
+    # print(content.text)
 
 
 logo = \
